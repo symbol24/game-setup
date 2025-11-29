@@ -1,0 +1,13 @@
+[gd_resource type="Theme" format=3 uid="uid://bv127b8g6qnhn"]
+
+[resource]
+default_font_size = 8
+CreditSectionTitle/base_type = &"Label"
+CreditSectionTitle/font_sizes/font_size = 8
+CreditsNames/base_type = &"Label"
+CreditsNames/font_sizes/font_size = 6
+Label/font_sizes/font_size = 8
+MMGameTitle/base_type = &"Label"
+MMGameTitle/font_sizes/font_size = 16
+MenuTitle/base_type = &"Label"
+MenuTitle/font_sizes/font_size = 12
