@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c741gc1ncbqmb"]
+[gd_scene load_steps=3 format=3 uid="uid://c741gc1ncbqmb"]
 
 [ext_resource type="Script" uid="uid://d1ioocmrt1m4r" path="res://code/ui/menus/how_to.gd" id="1_hrb4d"]
+[ext_resource type="Script" uid="uid://cwr2iqm80a030" path="res://code/ui/rid_button.gd" id="2_4brnw"]
 
 [node name="HowTo" type="Control"]
 layout_mode = 3
@@ -47,6 +48,7 @@ custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Back"
+script = ExtResource("2_4brnw")
 
 [node name="spacer" type="Control" parent="vbox/bottom_hbox"]
 custom_minimum_size = Vector2(10, 0)

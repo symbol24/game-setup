@@ -35,6 +35,7 @@ func _save_file() -> void:
 	loaded_save_file.save_time_and_date = Time.get_unix_time_from_system()
 	ResourceSaver.save(loaded_save_file, FOLDER + loaded_save_file.file_name + "." + EXTENSION)
 	Signals.save_result.emit(0)
+	Signals.display_save_icon.emit()
 
 
 func _load_file(id:int = 0) -> void:

@@ -1,6 +1,9 @@
 class_name GameManager extends Node
 
 
+const DEFAULT_FONT := preload("uid://djjcyn7q7sla1")
+const DYSLEXIA_FONT := preload("uid://dc7o3h0rsq1i5")
+const DEFAULT_THEME:Theme = preload("uid://bv127b8g6qnhn")
 const WINDOW_SIZES:Array[Vector2i] = [
 	Vector2i(3840, 2160), 
 	Vector2i(2560, 1440), 
@@ -15,6 +18,11 @@ const WINDOW_SIZES:Array[Vector2i] = [
 	Vector2i(800, 600), 
 	Vector2i(640, 480), 
 	]
+const LOCALES:Array[String] = [
+	"en",
+	"fr",
+	"fr-CA"
+]
 
 
 enum Window_Mode {
@@ -28,23 +36,48 @@ var _data:DataManager = null:
 	get:
 		if _data == null: _data = get_tree().get_first_node_in_group(&"data_manager")
 		return _data
+var theme:Theme
 
 
 func _init() -> void:
 	add_to_group(&"game_manager")
 	name = &"game_manager"
 	process_mode = PROCESS_MODE_ALWAYS
+	theme = DEFAULT_THEME
 
 
-func _set_display_mode(_mode:Window_Mode) -> void:
+func _ready() -> void:
+	Signals.update_resolution.connect(_update_resolution)
+	Signals.update_window_mode.connect(_update_window_mode)
+	Signals.update_font.connect(_update_font)
+	Signals.update_language.connect(_update_display_language)
+
+
+func _update_window_mode(_mode:Window_Mode, resolution_choice:int) -> void:
 	match _mode:
 		Window_Mode.BORDERLESS_WINDOWED:
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			get_window().set_size(_data.loaded_save_file.resolution)
+			get_window().set_size(WINDOW_SIZES[resolution_choice])
 		Window_Mode.WINDOWED:
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			get_window().set_size(_data.loaded_save_file.resolution)
+			get_window().set_size(WINDOW_SIZES[resolution_choice])
 		_:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
+
+func _update_resolution(resolution_choice:int) -> void:
+	get_window().size = WINDOW_SIZES[resolution_choice]
+
+
+func _update_font(is_dyslexia_friendly := false) -> void:
+	if is_dyslexia_friendly:
+		theme.set_default_font(DYSLEXIA_FONT)
+	else:
+		theme.set_default_font(DEFAULT_FONT)
+
+
+func _update_display_language(locale := "en") -> void:
+	locale = locale if locale in LOCALES else LOCALES[0]
+	TranslationServer.set_locale(locale)

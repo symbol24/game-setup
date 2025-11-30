@@ -4,6 +4,7 @@ class_name AudioManager extends Node
 const MIN_DB := -60.0
 const MAX_DB := 0.0
 const MUSIC_FADE_TIME := 2.0
+const BTN_SOUND := preload("uid://ghdpasia543e")
 
 
 var _music:RidAudioStreamPlayer = null
@@ -21,6 +22,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	Signals.play_audio.connect(_play_audio)
+	Signals.update_bus_volume.connect(_update_bus_volume)
 
 
 func _process(_delta: float) -> void:
@@ -88,3 +90,8 @@ func _fade_music(_out:RidAudioStreamPlayer, _in:RidAudioStreamPlayer) -> void:
 	tween.set_parallel(true)
 	tween.tween_property(_out, "volume_db", MIN_DB, MUSIC_FADE_TIME)
 	tween.parallel().tween_property(_in, "volume_db", _in.audio_file.db, MUSIC_FADE_TIME)
+
+
+func _update_bus_volume(bus:StringName, value:float) -> void:
+	var index := AudioServer.get_bus_index(bus)
+	AudioServer.set_bus_volume_db(index, linear_to_db(value))

@@ -11,6 +11,6 @@ list = Dictionary[StringName, String]({
 &"main_menu": "uid://b22o1klwn22dy",
 &"pause_menu": "",
 &"play_ui": "",
-&"settings": ""
+&"settings": "res://scenes/ui/menus/settings.tscn"
 })
 metadata/_custom_type_script = "uid://bxun13epfkarj"

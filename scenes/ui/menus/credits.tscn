@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://c11rpl0emwc8n"]
+[gd_scene load_steps=3 format=3 uid="uid://c11rpl0emwc8n"]
 
 [ext_resource type="Script" uid="uid://bwjnem4ctxbh1" path="res://code/ui/menus/credits.gd" id="1_3ikd0"]
+[ext_resource type="Script" uid="uid://cwr2iqm80a030" path="res://code/ui/rid_button.gd" id="2_w063j"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_3ikd0")
+id = &"credits"
 metadata/_custom_type_script = "uid://bywk6b8aj4mi"
 
 [node name="background" type="ColorRect" parent="."]
@@ -100,6 +102,7 @@ custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Back"
+script = ExtResource("2_w063j")
 
 [node name="spacer" type="Control" parent="vbox/bottom_hbox"]
 custom_minimum_size = Vector2(10, 0)
