@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=27 format=3 uid="uid://bv127b8g6qnhn"]
+[gd_resource type="Theme" format=3 uid="uid://bv127b8g6qnhn"]
 
 [ext_resource type="Texture2D" uid="uid://x5sjw7vopkqo" path="res://textures/ui/slider_grabber.png" id="1_uiit7"]
 [ext_resource type="FontFile" uid="uid://djjcyn7q7sla1" path="res://data/fonts/80s-retro-future.ttf" id="1_x3fhk"]
